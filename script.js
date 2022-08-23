@@ -46,42 +46,69 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
-
-function alertFunction(){
-    return button.id
-}
-function game(){
-    let score = 0
-
-    for (let i = 0; i < 5; i++){
-        let computerSelection = getComputerChoice();
-        let buttons = document.querySelectorAll("button");
-
-        buttons.forEach((button) => {
-            button.addEventListener('click', alertFunction(button.id));
-        })
-
-
-
-        console.log(clickedButton);
-        let string = playRound(clickedButton, computerSelection);
-        console.log(string);
-        if (string.includes("win")){
-            score += 1;
+let roundsPlayed = score = 0;
+let divSelection = document.querySelector("#round-status");
+let gameStatus = document.querySelector("#game-status");
+function clickedButton(id){
+    gameStatus.textContent = "";
+    if(roundsPlayed == 5){
+        if(score>=3){
+            gameStatus.textContent = "You won the game!"
         }
+        else{
+            gameStatus.textContent = "You lost the game!"
+        }
+        roundsPlayed = 0;
+        score = 0;
+    }
+    let computerSelection = getComputerChoice();
+    let string = playRound(id, computerSelection);
+    roundsPlayed += 1;
+    console.log(string);
+    divSelection.textContent = string;
+    if(string.includes("win")){
+        score += 1;
     }
 
-    if(score>3){
-        console.log("You win!");
-    }
-    else if(score == 3){
-        console.log("Draw");
-    }
-    else{
-        console.log("You lose!");
-    }
+
+
+
+    
 
 }
 
+// function game(){
+//     let score = 0
 
-game();
+//     for (let i = 0; i < 5; i++){
+//         let computerSelection = getComputerChoice();
+//         let buttons = document.querySelectorAll("button");
+
+//         buttons.forEach((button) => {
+//             button.addEventListener('click', function (e){
+//                 console.log(e.target.id);
+//             });
+//         })
+
+//         // console.log(buttonID);
+//         // let string = playRound(buttonID, computerSelection);
+//         // console.log(string);
+//         // if (string.includes("win")){
+//         //     score += 1;
+//         // }
+//     }
+
+//     if(score>3){
+//         console.log("You win!");
+//     }
+//     else if(score == 3){
+//         console.log("Draw");
+//     }
+//     else{
+//         console.log("You lose!");
+//     }
+
+// }
+
+
+// game();
