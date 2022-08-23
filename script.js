@@ -46,12 +46,25 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
+
+function alertFunction(){
+    return button.id
+}
 function game(){
     let score = 0
+
     for (let i = 0; i < 5; i++){
         let computerSelection = getComputerChoice();
-        let playerSelection = prompt();
-        let string = playRound(playerSelection, computerSelection);
+        let buttons = document.querySelectorAll("button");
+
+        buttons.forEach((button) => {
+            button.addEventListener('click', alertFunction(button.id));
+        })
+
+
+
+        console.log(clickedButton);
+        let string = playRound(clickedButton, computerSelection);
         console.log(string);
         if (string.includes("win")){
             score += 1;
